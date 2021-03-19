@@ -6,6 +6,9 @@
 
 require('./bootstrap');
 
+require('./functions');
+require('./slicknav.js');
+
 window.Vue = require('vue');
 
 /**

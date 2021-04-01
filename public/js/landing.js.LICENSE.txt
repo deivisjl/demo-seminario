@@ -16,9 +16,9 @@
  */
 
 /*!
- * Vue.js v2.6.12
- * (c) 2014-2020 Evan You
- * Released under the MIT License.
+ * SlickNav Responsive Mobile Menu v1.0.10
+ * (c) 2016 Josh Cope
+ * licensed under MIT
  */
 
 /*!
@@ -34,20 +34,6 @@
  *
  * Date: 2021-03-02T17:08Z
  */
-
-/*! DataTables 1.10.24
- * ©2008-2021 SpryMedia Ltd - datatables.net/license
- */
-
-/*! DataTables Bootstrap 4 integration
- * ©2011-2017 SpryMedia Ltd - datatables.net/license
- */
-
-/**
-  * vee-validate v2.2.15
-  * (c) 2019 Abdelrahman Awad
-  * @license MIT
-  */
 
 /**
  * @license

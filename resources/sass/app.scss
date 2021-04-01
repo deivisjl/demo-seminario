@@ -1,13 +1,43 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-@import 'normalize.css';
 
-@import 'slicknav.css';
+.form-control:focus {
+    color: #495057!important;
+    background-color: #fff!important;
+    border-color: #80bdff!important;
+    outline: 0!important;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 0%)!important;
+}
 
-@import 'thegem';
-// Variables
-@import 'variables';
+.swal2-icon{
+	width: 4em!important;
+    height: 4em!important;
+}
+
+.swal2-title{
+	font-size:18px!important;
+}
+
+.swal2-content{
+	font-size:15px!important;
+}
+
+.swal2-styled.swal2-confirm {
+	font-size:14px!important;
+}
+
+.swal2-styled.swal2-cancel {
+	font-size:14px!important;
+}
+
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.min.css';
+
+@import "~toastr/toastr.scss";
+
+@import '~sweetalert2/dist/sweetalert2.css';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import '~@fortawesome/fontawesome-free/css/all.min.css';

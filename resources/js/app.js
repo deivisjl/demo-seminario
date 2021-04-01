@@ -4,12 +4,35 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-
-require('./functions');
-require('./slicknav.js');
-
 window.Vue = require('vue');
+
+window.$ = window.jQuery = require('jquery');
+window.$.fn.DataTable = require( 'datatables.net' );
+window.$.fn.DataTable = require( 'datatables.net-bs4' );
+
+window.Swal = require('sweetalert2');
+window.Toastr = require('toastr');
+
+require('./bootstrap');
+require('./utils');
+
+/* VeeValidate */
+import VeeValidate from 'vee-validate';
+
+const VueValidationEs = require('vee-validate/dist/locale/es');
+
+const config = {
+  locale: 'es',
+  validity: true,
+  dictionary: {
+    es: VueValidationEs
+  },
+  fieldsBagName: 'campos',
+  errorBagName: 'errors', // change if property conflicts
+};
+
+Vue.use(VeeValidate, config);
+/* End VeeValidate */
 
 /**
  * The following block of code may be used to automatically register your

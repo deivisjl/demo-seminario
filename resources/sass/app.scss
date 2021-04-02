@@ -1,6 +1,17 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+/* .icon-bg-azul{
+        background: rgb(29, 191, 255);
+        box-shadow: rgb(29 191 255 / 35%) 0px 0px 0px 4px;
+        border-radius: 50%;
+        color: #fff;
+        padding: 8px;
+} */
+
+.shadow-md {
+    box-shadow: 0 .125rem .45rem rgba(0,0,0,.175)!important;
+}
 
 .form-control:focus {
     color: #495057!important;

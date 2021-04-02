@@ -10,23 +10,23 @@ class MetaComposer
     {
         if(request()->segment(5) != '')
         {
-            $metaTitle = ucfirst(str_replace('-','', request()->segment(5))).' - '.config('app.name');
+            $metaTitle = ucfirst(str_replace('-','', request()->segment(5)));
         }
         else if(request()->segment(4) != '')
         {
-            $metaTitle = ucfirst(str_replace('-','', request()->segment(4))).' - '.config('app.name');
+            $metaTitle = ucfirst(str_replace('-','', request()->segment(4)));
         }
         else if(request()->segment(3) != '')
         {
-            $metaTitle = ucfirst(str_replace('-','', request()->segment(3))).' - '.config('app.name');
+            $metaTitle = ucfirst(str_replace('-','', request()->segment(3)));
         }
         else if(request()->segment(2) != '')
         {
-            $metaTitle = ucfirst(str_replace('-','', request()->segment(2))).' - '.config('app.name');
+            $metaTitle = ucfirst(str_replace('-','', request()->segment(2)));
         }
         else if(request()->segment(1) != '')
         {
-            $metaTitle = ucfirst(str_replace('-','', request()->segment(1))).' - '.config('app.name');
+            $metaTitle = ucfirst(str_replace('-','', request()->segment(1)));
         }
 
         if(isset($metaTitle))

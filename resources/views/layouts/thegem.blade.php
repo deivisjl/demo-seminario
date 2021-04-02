@@ -32,7 +32,7 @@
 
                 <div class="tagline">
                     <h1>DIACO</h1>
-                    <p>La DIACO procurará que las relaciones entre proveedores, consumidores y usuarios se lleven a cabo con apego a la Leyes en materia de Protección al Consumidor.</p>
+                    <p>La DIACO procurará que las relaciones entre proveedores, consumidores y usuarios se lleven a cabo con apego a las Leyes en materia de Protección al Consumidor.</p>
                 </div>
             </div>
         </header>

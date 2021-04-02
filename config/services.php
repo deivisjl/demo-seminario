@@ -30,4 +30,7 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'helper' => [
+        'app_alias' => env('APP_ALIAS'),
+    ],
 ];

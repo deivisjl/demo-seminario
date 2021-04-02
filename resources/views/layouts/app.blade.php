@@ -33,7 +33,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @guest
+                        @else
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-tachometer-alt"></i> Administrar
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#"><i class="fas fa-users  icon-bg-verde"></i> Usuarios</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#"><i class="fas fa-globe-americas icon-bg-azul"></i> Regiones</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#"><i class="fas fa-layer-group  icon-bg-rojo"></i> Departamentos</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#"><i class="fas fa-street-view  icon-bg-violeta"></i> Municipios</a>
+                            </div>
+                          </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"><i class="fas fa-address-book"></i> Quejas</a>
+                          </li>
+                          <li class="nav-item active">
+                            <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> Reportes</a>
+                        </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -50,15 +72,23 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle active" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                   <i class="fas fa-cog"></i> {{ Auth::user()->nombres }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-user icon-bg-azul"></i> Perfil
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-key icon-bg-verde"></i> Cambiar contraseña
+                                    </a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fas fa-sign-out-alt icon-bg-rojo"></i> Cerrar sesión
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -51,6 +51,9 @@ Vue.component('error-form', require('./components/shared/ErrorComponent').defaul
 Vue.component('editar-region-component', require('./components/administrar/region/EditarRegionComponent.vue').default);
 Vue.component('nuevo-region-component', require('./components/administrar/region/NuevoRegionComponent.vue').default);
 
+Vue.component('nuevo-departamento-component', require('./components/administrar/departamento/NuevoDepartamentoComponent.vue').default);
+Vue.component('editar-departamento-component', require('./components/administrar/departamento/EditarDepartamentoComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

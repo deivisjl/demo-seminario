@@ -8,7 +8,7 @@
             <div class="card shadow-md">
                 <div class="card-header">
                     <h3 class="card-title-custom">
-                        Nueva región
+                        Nuevo registro
                     </h3>
                     <div class="card-tools">
                         <nav aria-label="breadcrumb">

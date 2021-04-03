@@ -8,7 +8,7 @@
             <div class="card shadow-md">
                 <div class="card-header">
                     <h3 class="card-title-custom">
-                        Editar registro
+                        Editar región
                     </h3>
                     <div class="card-tools">
                         <nav aria-label="breadcrumb">
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="card-body">
-                    <editar-region-component :region="{{ $region }}"></editar-region-component>
+                    <editar-departamento-component :departamento="{{ $departamento }}" :regiones="{{ $regiones }}"></editar-departamento-component>
                 </div>
             </div>
         </div>

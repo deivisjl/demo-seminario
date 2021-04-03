@@ -8,6 +8,7 @@ class MetaComposer
 {
     public function compose(View $view)
     {
+
         if(request()->segment(5) != '')
         {
             $metaTitle = ucfirst(str_replace('-','', request()->segment(5)));
@@ -20,10 +21,10 @@ class MetaComposer
         {
             $metaTitle = ucfirst(str_replace('-','', request()->segment(3)));
         }
-        else if(request()->segment(2) != '')
+        /* else if(request()->segment(2) != '')
         {
             $metaTitle = ucfirst(str_replace('-','', request()->segment(2)));
-        }
+        } */
         else if(request()->segment(1) != '')
         {
             $metaTitle = ucfirst(str_replace('-','', request()->segment(1)));

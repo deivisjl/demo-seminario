@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
+use App\Services\Region\IRegionService;
 use Illuminate\Support\ServiceProvider;
+use App\Services\Region\RegionServiceImpl;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //Services
+        $this->app->singleton(IRegionService::class, RegionServiceImpl::class);
     }
 
     /**

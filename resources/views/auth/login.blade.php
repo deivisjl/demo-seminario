@@ -8,11 +8,11 @@
                 <div class="card-header text-center">Introducir credenciales</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" autocomplete="false">
+                    <form method="POST" action="{{ route('login') }}" autocomplete="off">
                         @csrf
                         <div class="form-group">
                             <label for="email" class="col-form-label text-md-right">Correo electrónico</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <span>{{ $message }}</span>
@@ -22,7 +22,7 @@
 
                         <div class="form-group">
                             <label for="password" class="col-form-label text-md-right">Contraseña</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         {{ $message }}

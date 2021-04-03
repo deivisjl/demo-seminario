@@ -1,6 +1,64 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+.toast-success {
+    background-color: #51a351!important;
+}
+
+.toast-error {
+    background-color: #bd362f!important;
+}
+
+.toast-warning {
+    background-color: #f89406!important;
+}
+
+.toast-info {
+    background-color: #2f96b4!important;
+}
+
+.card-header > .card-tools {
+    float: right;
+    margin-right: -.625rem;
+}
+
+.breadcrumb-custom {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: .1rem;
+    list-style: none;
+    background-color: rgba(233,236,239,.03137254901960784);
+    border-radius: .25rem;
+}
+
+.card-title-custom {
+    float: left;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.table td, .table th {
+    padding: .35rem!important;
+}
+
+.block-loading
+{
+    z-index: 9999;
+    display: flex;
+    background: url(/images/ajax-loader.gif) #eee center center no-repeat;
+    position: fixed;
+    z-index: 1060;
+    opacity: 0.7;
+    flex-direction: row;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: .625em;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
  .icon-bg-azul{
     background: #007bff;
     box-shadow: 0 0 0 4px #007bff38;

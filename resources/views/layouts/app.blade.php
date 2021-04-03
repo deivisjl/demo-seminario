@@ -8,10 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title> {{ $metaTitle ?? config('services.helper.alias_name', 'Diaco') }} - {{ config('app.name', 'Diaco') }} </title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -42,7 +39,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item" href="#"><i class="fas fa-users  icon-bg-verde"></i> Usuarios</a>
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"><i class="fas fa-globe-americas icon-bg-azul"></i> Regiones</a>
+                              <a class="dropdown-item" href="{{ route('regiones.index') }}"><i class="fas fa-globe-americas icon-bg-azul"></i> Regiones</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="#"><i class="fas fa-layer-group  icon-bg-rojo"></i> Departamentos</a>
                               <div class="dropdown-divider"></div>
@@ -106,5 +103,8 @@
             @yield('content')
         </main>
     </div>
+    {{-- scripts --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('js')
 </body>
 </html>

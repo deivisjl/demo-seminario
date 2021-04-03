@@ -18,4 +18,6 @@ Route::get('/', function () {
 Auth::routes(['register' => false, 'reset' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::resource('usuarios','Usuario\UsuarioController');
+Route::resource('regiones','Administrar\RegionController');

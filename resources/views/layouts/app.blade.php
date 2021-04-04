@@ -43,7 +43,7 @@
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="{{ route('departamentos.index') }}"><i class="fas fa-layer-group  icon-bg-rojo"></i> Departamentos</a>
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"><i class="fas fa-street-view  icon-bg-violeta"></i> Municipios</a>
+                              <a class="dropdown-item" href="{{ route('municipios.index') }}"><i class="fas fa-street-view  icon-bg-violeta"></i> Municipios</a>
                             </div>
                           </li>
                         <li class="nav-item active">

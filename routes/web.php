@@ -22,3 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('usuarios','Usuario\UsuarioController');
 Route::resource('regiones','Administrar\RegionController');
 Route::resource('departamentos','Administrar\DepartamentoController');
+Route::resource('municipios','Administrar\MunicipioController');

@@ -54,6 +54,9 @@ Vue.component('nuevo-region-component', require('./components/administrar/region
 Vue.component('nuevo-departamento-component', require('./components/administrar/departamento/NuevoDepartamentoComponent.vue').default);
 Vue.component('editar-departamento-component', require('./components/administrar/departamento/EditarDepartamentoComponent.vue').default);
 
+
+Vue.component('nuevo-municipio-component', require('./components/administrar/municipio/NuevoMunicipioComponent.vue').default);
+Vue.component('editar-municipio-component', require('./components/administrar/municipio/EditarMunicipioComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

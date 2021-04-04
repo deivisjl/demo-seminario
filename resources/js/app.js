@@ -57,6 +57,9 @@ Vue.component('editar-departamento-component', require('./components/administrar
 
 Vue.component('nuevo-municipio-component', require('./components/administrar/municipio/NuevoMunicipioComponent.vue').default);
 Vue.component('editar-municipio-component', require('./components/administrar/municipio/EditarMunicipioComponent.vue').default);
+
+Vue.component('credencial-component', require('./components/administrar/usuario/CredencialComponent.vue').default);
+Vue.component('perfil-component', require('./components/administrar/usuario/PerfilComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -11,15 +11,15 @@ class MetaComposer
 
         if(request()->segment(5) != '')
         {
-            $metaTitle = ucfirst(str_replace('-','', request()->segment(5)));
+            $metaTitle = ucfirst(str_replace('-',' ', request()->segment(5)));
         }
         else if(request()->segment(4) != '')
         {
-            $metaTitle = ucfirst(str_replace('-','', request()->segment(4)));
+            $metaTitle = ucfirst(str_replace('-',' ', request()->segment(4)));
         }
         else if(request()->segment(3) != '')
         {
-            $metaTitle = ucfirst(str_replace('-','', request()->segment(3)));
+            $metaTitle = ucfirst(str_replace('-',' ', request()->segment(3)));
         }
         /* else if(request()->segment(2) != '')
         {
@@ -27,7 +27,7 @@ class MetaComposer
         } */
         else if(request()->segment(1) != '')
         {
-            $metaTitle = ucfirst(str_replace('-','', request()->segment(1)));
+            $metaTitle = ucfirst(str_replace('-',' ', request()->segment(1)));
         }
 
         if(isset($metaTitle))

@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary" style="box-shadow: 0 .125rem .25rem rgba(0,0,0,.150)!important;">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top" style="box-shadow: 0 .125rem .25rem rgba(0,0,0,.150)!important;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ $metaTitle === "Login" ? config('app.name', 'Laravel') : config('services.helper.app_alias','Laravel') }}
@@ -74,11 +74,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="/perfil">
                                         <i class="fas fa-user icon-bg-azul"></i> Perfil
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="/cambiar-credencial">
                                         <i class="fas fa-key icon-bg-verde"></i> Cambiar contraseña
                                     </a>
                                     <div class="dropdown-divider"></div>

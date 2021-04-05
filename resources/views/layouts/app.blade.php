@@ -37,7 +37,7 @@
                               <i class="fas fa-tachometer-alt"></i> Administrar
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="#"><i class="fas fa-users  icon-bg-verde"></i> Usuarios</a>
+                              <a class="dropdown-item" href="{{ route('usuarios.index') }}"><i class="fas fa-users  icon-bg-verde"></i> Usuarios</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="{{ route('regiones.index') }}"><i class="fas fa-globe-americas icon-bg-azul"></i> Regiones</a>
                               <div class="dropdown-divider"></div>

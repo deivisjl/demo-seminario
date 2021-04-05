@@ -6,14 +6,13 @@
 
 window.Vue = require('vue');
 
-window.$ = window.jQuery = require('jquery');
+require('./bootstrap');
 window.$.fn.DataTable = require( 'datatables.net' );
 window.$.fn.DataTable = require( 'datatables.net-bs4' );
 
 window.Swal = require('sweetalert2');
 window.Toastr = require('toastr');
 
-require('./bootstrap');
 require('./utils');
 
 window.abs_path = '';
@@ -60,6 +59,8 @@ Vue.component('editar-municipio-component', require('./components/administrar/mu
 
 Vue.component('credencial-component', require('./components/administrar/usuario/CredencialComponent.vue').default);
 Vue.component('perfil-component', require('./components/administrar/usuario/PerfilComponent.vue').default);
+Vue.component('nuevo-usuario-component', require('./components/administrar/usuario/NuevoUsuarioComponent.vue').default);
+Vue.component('editar-usuario-component', require('./components/administrar/usuario/EditarUsuarioComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

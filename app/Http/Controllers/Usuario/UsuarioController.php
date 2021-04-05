@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Usuario;
 
+use App\Rol;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
 
 class UsuarioController extends Controller
 {
@@ -15,7 +19,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        return view('administrar.usuario.index');
     }
 
     /**
@@ -25,7 +29,9 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Rol::all();
+
+        return view('administrar.usuario.create',['roles' => $roles]);
     }
 
     /**
@@ -36,7 +42,38 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try
+        {
+            $rules = [
+                'nombres' => 'required',
+                'apellidos' => 'required',
+                'dpi' => 'required|numeric|min:1',
+                'telefono' => 'required|numeric|min:1',
+                'direccion' => 'required',
+                'rol' => 'required|numeric|min:1',
+                'email'=>'required|unique:users',
+                'password'=>'required|string|min:5|confirmed',
+            ];
+
+            $this->validate($request, $rules);
+
+            $usuario = new User();
+            $usuario->nombres = $request->get('nombres');
+            $usuario->apellidos = $request->get('apellidos');
+            $usuario->dpi = $request->get('dpi');
+            $usuario->telefono = $request->get('telefono');
+            $usuario->direccion = $request->get('direccion');
+            $usuario->rol_id = $request->get('rol');
+            $usuario->email = $request->get('email');
+            $usuario->password = bcrypt($request->get('password'));
+            $usuario->save();
+
+            return response()->json(['data' => 'Registro guardado con éxito'],200);
+        }
+        catch (\Exception $e)
+        {
+            return response()->json(['error' => $e->getMessage()],423);
+        }
     }
 
     /**
@@ -45,9 +82,36 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $ordenadores = array("u.id","u.nombres","u.apellidos","u.email","r.nombre","u.telefono");
+
+        $columna = $request['order'][0]["column"];
+
+        $criterio = $request['search']['value'];
+
+        $usuarios = DB::table('users as u')
+                ->join('rol as r','u.rol_id','r.id')
+                ->select('u.id','u.nombres','u.apellidos', 'u.email', 'r.nombre as rol','u.telefono')
+                ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
+                ->orderBy($ordenadores[$columna], $request['order'][0]["dir"])
+                ->skip($request['start'])
+                ->take($request['length'])
+                ->get();
+
+        $count = DB::table('users as u')
+                ->join('rol as r','u.rol_id','r.id')
+                ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
+                ->count();
+
+        $data = array(
+            'draw' => $request->draw,
+            'recordsTotal' => $count,
+            'recordsFiltered' => $count,
+            'data' => $usuarios,
+            );
+
+        return response()->json($data, 200);
     }
 
     /**
@@ -58,7 +122,11 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles = Rol::all();
+
+        $usuario = User::findOrFail($id);
+
+        return view('administrar.usuario.edit',['usuario' => $usuario,'roles' => $roles]);
     }
 
     /**
@@ -70,7 +138,34 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            $rules = [
+                'nombres' => 'required',
+                'apellidos' => 'required',
+                'dpi' => 'required|numeric|min:1',
+                'telefono' => 'required|numeric|min:1',
+                'direccion' => 'required',
+                'rol' => 'required|numeric|min:1',
+            ];
+
+            $this->validate($request, $rules);
+
+            $usuario = User::findOrFail($id);
+            $usuario->nombres = $request->get('nombres');
+            $usuario->apellidos = $request->get('apellidos');
+            $usuario->dpi = $request->get('dpi');
+            $usuario->telefono = $request->get('telefono');
+            $usuario->direccion = $request->get('direccion');
+            $usuario->rol_id = $request->get('rol');
+            $usuario->save();
+
+            return response()->json(['data' => 'Registro actualizado con éxito'],200);
+        }
+        catch (\Exception $e)
+        {
+            return response()->json(['error' => $e->getMessage()],423);
+        }
     }
 
     /**
@@ -81,7 +176,30 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try
+        {
+
+            $usuario = User::FindOrFail($id);
+
+            if($usuario->id == Auth::user()->id)
+            {
+                throw new \Exception("No se puede eliminar el usuario que está en sesión");
+            }
+            $usuario->delete();
+
+            return response()->json(['data' => 'Registro eliminado con éxito'],200);
+        }
+        catch (\Exception $e)
+        {
+            if ($e instanceof QueryException) {
+                $codigo = $e->errorInfo[1];
+
+                if ($codigo == 1451) {
+                    return response()->json(['error' => 'No se puede eliminar porque tiene registros asociados'],423);
+                }
+            }
+            return response()->json(['error' => $e->getMessage()],423);
+        }
     }
 
     public function modificarAcceso()

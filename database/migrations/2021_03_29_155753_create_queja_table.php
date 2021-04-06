@@ -15,15 +15,24 @@ class CreateQuejaTable extends Migration
     {
         Schema::create('queja', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('no')->nullable();
             $table->string('no_documento')->nullable();
             $table->date('fecha_documento')->nullable();
             $table->text('detalle');
-            $table->string('pais');
-            $table->string('genero');
+            $table->text('solicitud');
+            $table->string('nacionalidad');
             $table->string('telefono_contacto')->nullable();
             $table->string('correo_contacto')->nullable();
-            $table->bigInteger('empresa_id')->unsigned();
-            $table->foreign('empresa_id')->references('id')->on('empresa');
+            $table->string('nit');
+            $table->string('negocio');
+            $table->text('direccion');
+            $table->string('ip');
+            $table->bigInteger('actividad_economica_id')->unsigned();
+            $table->bigInteger('departamento_id')->unsigned();
+            $table->bigInteger('municipio_id')->unsigned();
+            $table->foreign('municipio_id')->references('id')->on('municipio');
+            $table->foreign('departamento_id')->references('id')->on('departamento');
+            $table->foreign('actividad_economica_id')->references('id')->on('actividad_economica');
             $table->timestamps();
         });
     }

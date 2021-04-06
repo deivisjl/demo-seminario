@@ -14,6 +14,7 @@ window.Swal = require('sweetalert2');
 window.Toastr = require('toastr');
 
 require('./utils');
+require('./form_wizard');
 
 window.abs_path = '';
 
@@ -61,6 +62,9 @@ Vue.component('credencial-component', require('./components/administrar/usuario/
 Vue.component('perfil-component', require('./components/administrar/usuario/PerfilComponent.vue').default);
 Vue.component('nuevo-usuario-component', require('./components/administrar/usuario/NuevoUsuarioComponent.vue').default);
 Vue.component('editar-usuario-component', require('./components/administrar/usuario/EditarUsuarioComponent.vue').default);
+
+Vue.component('queja-component', require('./components/QuejaComponent.vue').default);
+Vue.component('consulta-queja-component', require('./components/ConsultaQuejaComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

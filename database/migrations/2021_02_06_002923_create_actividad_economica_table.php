@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmpresaTable extends Migration
+class CreateActividadEconomicaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,11 @@ class CreateEmpresaTable extends Migration
      */
     public function up()
     {
-        /* Schema::create('empresa', function (Blueprint $table) {
+        Schema::create('actividad_economica', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->string('nit');
-            $table->string('slug');
-            $table->string('direccion');
-            $table->integer('matriz')->default(0);
-            $table->bigInteger('municipio_id')->unsigned();
-            $table->foreign('municipio_id')->references('id')->on('municipio');
             $table->timestamps();
-        }); */
+        });
     }
 
     /**
@@ -33,6 +27,6 @@ class CreateEmpresaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empresa');
+        Schema::dropIfExists('actividad_economica');
     }
 }

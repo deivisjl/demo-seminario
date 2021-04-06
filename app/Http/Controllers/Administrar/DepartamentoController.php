@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrar;
 
 use App\Region;
+use App\Municipio;
 use App\Departamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -170,5 +171,19 @@ class DepartamentoController extends Controller
             }
             return response()->json(['error' => $e->getMessage()],423);
         }
+    }
+    /**
+     * Retorna el listado de los municipios de un departamento
+     *
+     * @param  \App\Departamento  $departamento
+     * @return \Illuminate\Http\Response
+     */
+    public function municipio($id)
+    {
+        $municipios = Municipio::where('departamento_id',$id)
+                            ->orderBy('nombre','asc')
+                            ->get();
+
+        return response()->json(['data' => $municipios],200);
     }
 }

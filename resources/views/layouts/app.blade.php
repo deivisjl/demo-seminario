@@ -39,6 +39,8 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item" href="{{ route('usuarios.index') }}"><i class="fas fa-users  icon-bg-verde"></i> Usuarios</a>
                               <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{{ route('actividad-economica.index') }}"><i class="fas fa-clipboard  icon-bg-amarillo"></i> Actividad económica</a>
+                              <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="{{ route('regiones.index') }}"><i class="fas fa-globe-americas icon-bg-azul"></i> Regiones</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="{{ route('departamentos.index') }}"><i class="fas fa-layer-group  icon-bg-rojo"></i> Departamentos</a>

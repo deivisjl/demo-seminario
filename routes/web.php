@@ -36,6 +36,7 @@ Route::group(['middleware' =>['auth']], function(){
     Route::resource('regiones','Administrar\RegionController');
     Route::resource('departamentos','Administrar\DepartamentoController');
     Route::resource('municipios','Administrar\MunicipioController');
+    Route::resource('actividad-economica','Administrar\ActividadEconomicaController');
 
     Route::resource('quejas','Queja\QuejaController');
 });

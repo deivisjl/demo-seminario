@@ -58,6 +58,9 @@ Vue.component('editar-departamento-component', require('./components/administrar
 Vue.component('nuevo-municipio-component', require('./components/administrar/municipio/NuevoMunicipioComponent.vue').default);
 Vue.component('editar-municipio-component', require('./components/administrar/municipio/EditarMunicipioComponent.vue').default);
 
+Vue.component('nuevo-actividad-component', require('./components/administrar/actividades/NuevoActividadComponent.vue').default);
+Vue.component('editar-actividad-component', require('./components/administrar/actividades/EditarActividadComponent.vue').default);
+
 Vue.component('credencial-component', require('./components/administrar/usuario/CredencialComponent.vue').default);
 Vue.component('perfil-component', require('./components/administrar/usuario/PerfilComponent.vue').default);
 Vue.component('nuevo-usuario-component', require('./components/administrar/usuario/NuevoUsuarioComponent.vue').default);

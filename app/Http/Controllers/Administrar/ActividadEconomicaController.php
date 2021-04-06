@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Administrar;
 
 use App\ActividadEconomica;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 
 class ActividadEconomicaController extends Controller
 {
@@ -15,7 +17,7 @@ class ActividadEconomicaController extends Controller
      */
     public function index()
     {
-        //
+        return view('administrar.actividad-economica.index');
     }
 
     /**
@@ -25,7 +27,7 @@ class ActividadEconomicaController extends Controller
      */
     public function create()
     {
-        //
+        return view('administrar.actividad-economica.create');
     }
 
     /**
@@ -36,7 +38,24 @@ class ActividadEconomicaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try
+        {
+            $rules = [
+                'nombre' => 'required'
+            ];
+
+            $this->validate($request, $rules);
+
+            $actividad = new ActividadEconomica();
+            $actividad->nombre = $request->nombre;
+            $actividad->save();
+
+            return response()->json(['data' => 'Registro guardado con éxito'],200);
+        }
+        catch (\Exception $e)
+        {
+            return response()->json(['error' => $e->getMessage()],423);
+        }
     }
 
     /**
@@ -45,9 +64,33 @@ class ActividadEconomicaController extends Controller
      * @param  \App\ActividadEconomica  $actividadEconomica
      * @return \Illuminate\Http\Response
      */
-    public function show(ActividadEconomica $actividadEconomica)
+    public function show(Request $request)
     {
-        //
+        $ordenadores = array("id","nombre");
+
+        $columna = $request['order'][0]["column"];
+
+        $criterio = $request['search']['value'];
+
+        $actividades = DB::table('actividad_economica')
+                ->select('id','nombre')
+                ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
+                ->orderBy($ordenadores[$columna], $request['order'][0]["dir"])
+                ->skip($request['start'])
+                ->take($request['length'])
+                ->get();
+
+        $count = DB::table('actividad_economica')
+                ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
+                ->count();
+
+        $data = array(
+            'draw' => $request->draw,
+            'recordsTotal' => $count,
+            'recordsFiltered' => $count,
+            'data' => $actividades,
+            );
+        return response()->json($data, 200);
     }
 
     /**
@@ -56,9 +99,9 @@ class ActividadEconomicaController extends Controller
      * @param  \App\ActividadEconomica  $actividadEconomica
      * @return \Illuminate\Http\Response
      */
-    public function edit(ActividadEconomica $actividadEconomica)
+    public function edit(ActividadEconomica $actividad_economica)
     {
-        //
+        return view('administrar.actividad-economica.edit',['actividad' => $actividad_economica]);
     }
 
     /**
@@ -68,9 +111,25 @@ class ActividadEconomicaController extends Controller
      * @param  \App\ActividadEconomica  $actividadEconomica
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ActividadEconomica $actividadEconomica)
+    public function update(Request $request, ActividadEconomica $actividad_economica)
     {
-        //
+        try
+        {
+            $rules = [
+                'nombre' => 'required'
+            ];
+
+            $this->validate($request, $rules);
+
+            $actividad_economica->nombre = $request->nombre;
+            $actividad_economica->save();
+
+            return response()->json(['data' => 'Registro actualizado con éxito'],200);
+        }
+        catch (\Exception $e)
+        {
+            return response()->json(['error' => $e->getMessage()],423);
+        }
     }
 
     /**
@@ -79,8 +138,25 @@ class ActividadEconomicaController extends Controller
      * @param  \App\ActividadEconomica  $actividadEconomica
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ActividadEconomica $actividadEconomica)
+    public function destroy(ActividadEconomica $actividad_economica)
     {
-        //
+        try
+        {
+
+            $actividad_economica->delete();
+
+            return response()->json(['data' => 'Registro eliminado con éxito'],200);
+        }
+        catch (\Exception $e)
+        {
+            if ($e instanceof QueryException) {
+                $codigo = $e->errorInfo[1];
+
+                if ($codigo == 1451) {
+                    return response()->json(['error' => 'No se puede eliminar porque tiene registros asociados'],423);
+                }
+            }
+            return response()->json(['error' => $e->getMessage()],423);
+        }
     }
 }

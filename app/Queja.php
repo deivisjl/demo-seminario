@@ -8,6 +8,9 @@ class Queja extends Model
 {
     protected $table = 'queja';
 
+    const QUEJA_PENDIENTE = 'Pendiente';
+    const QUEJA_PROCESADA = 'Procesado';
+
     protected $fillable = [
         'id',
         'no',
@@ -22,4 +25,19 @@ class Queja extends Model
         'empresa_id',
         'direccion'
     ];
+
+    public function municipio()
+    {
+        return $this->belongsTo(Municipio::class);
+    }
+
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class);
+    }
+
+    public function actividad_economica()
+    {
+        return $this->belongsTo(ActividadEconomica::class);
+    }
 }

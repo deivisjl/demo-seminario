@@ -49,7 +49,7 @@
                             </div>
                           </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#"><i class="fas fa-address-book"></i> Quejas</a>
+                            <a class="nav-link" href="{{ route('quejas.index') }}"><i class="fas fa-address-book"></i> Quejas</a>
                           </li>
                           <li class="nav-item active">
                             <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> Reportes</a>

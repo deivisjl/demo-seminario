@@ -18,7 +18,7 @@ class QuejaController extends Controller
      */
     public function index()
     {
-        //
+        return view('queja.index');
     }
 
     /**
@@ -48,9 +48,37 @@ class QuejaController extends Controller
      * @param  \App\Queja  $queja
      * @return \Illuminate\Http\Response
      */
-    public function show(Queja $queja)
+    public function show(Request $request)
     {
-        //
+        $ordenadores = array("q.id","q.no","q.nit","q.negocio","ae.nombre");
+
+        $columna = $request['order'][0]["column"];
+
+        $criterio = $request['search']['value'];
+
+        $quejas = DB::table('queja as q')
+                ->join('actividad_economica as ae','q.actividad_economica_id','ae.id')
+                ->select('q.id','q.no','q.negocio','q.nit','ae.nombre as actividad','q.status')
+                ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
+                ->where('q.status','!=','Procesado')
+                ->orderBy($ordenadores[$columna], $request['order'][0]["dir"])
+                ->skip($request['start'])
+                ->take($request['length'])
+                ->get();
+
+        $count =  DB::table('queja as q')
+                ->join('actividad_economica as ae','q.actividad_economica_id','ae.id')
+                ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
+                ->where('q.status','!=','Procesado')
+                ->count();
+
+        $data = array(
+            'draw' => $request->draw,
+            'recordsTotal' => $count,
+            'recordsFiltered' => $count,
+            'data' => $quejas,
+            );
+        return response()->json($data, 200);
     }
 
     /**
@@ -59,9 +87,13 @@ class QuejaController extends Controller
      * @param  \App\Queja  $queja
      * @return \Illuminate\Http\Response
      */
-    public function edit(Queja $queja)
+    public function edit($id)
     {
-        //
+        $registro = Queja::where('no',$id)
+                            ->where('status','!=',Queja::QUEJA_PROCESADA)
+                            ->first();
+
+        return view('queja.detalle',['registro' => $registro]);
     }
 
     /**

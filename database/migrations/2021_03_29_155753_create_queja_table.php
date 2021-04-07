@@ -27,6 +27,7 @@ class CreateQuejaTable extends Migration
             $table->string('negocio');
             $table->text('direccion');
             $table->string('ip');
+            $table->string('status')->default('Pendiente');
             $table->bigInteger('actividad_economica_id')->unsigned();
             $table->bigInteger('departamento_id')->unsigned();
             $table->bigInteger('municipio_id')->unsigned();

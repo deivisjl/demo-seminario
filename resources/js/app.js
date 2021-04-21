@@ -68,6 +68,7 @@ Vue.component('editar-usuario-component', require('./components/administrar/usua
 
 Vue.component('queja-component', require('./components/QuejaComponent.vue').default);
 Vue.component('consulta-queja-component', require('./components/ConsultaQuejaComponent.vue').default);
+Vue.component('procesar-queja-component', require('./components/ProcesarQuejaComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -30,9 +30,11 @@ class CreateQuejaTable extends Migration
             $table->text('direccion');
             $table->string('ip');
             $table->string('status')->default('Pendiente');
+            $table->bigInteger('usuario_proceso_id')->unsigned()->nullable();
             $table->bigInteger('actividad_economica_id')->unsigned();
             $table->bigInteger('departamento_id')->unsigned();
             $table->bigInteger('municipio_id')->unsigned();
+            $table->foreign('usuario_proceso_id')->references('id')->on('users');
             $table->foreign('municipio_id')->references('id')->on('municipio');
             $table->foreign('departamento_id')->references('id')->on('departamento');
             $table->foreign('actividad_economica_id')->references('id')->on('actividad_economica');

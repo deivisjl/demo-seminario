@@ -26,7 +26,8 @@ class Queja extends Model
         'ip',
         'empresa_id',
         'direccion',
-        'status'
+        'status',
+        'usuario_proceso_id'
     ];
 
     public function municipio()

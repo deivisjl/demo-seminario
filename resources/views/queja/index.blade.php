@@ -63,7 +63,7 @@
                     return '<span class="badge badge-success">'+ data +'</span>'
                  }
               }},
-              {'defaultContent':'<a href="" class="editar btn btn-success btn-sm"  data-toggle="tooltip" data-placement="top" title="Editar registro"><i class="fa fa-edit"></i> Procesar</a>', "orderable":false}
+              {'defaultContent':'<a href="" class="editar btn btn-success btn-sm"  data-toggle="tooltip" data-placement="top" title="Detalle registro"><i class="fa fa-edit"></i> Detalle</a>', "orderable":false}
           ],
           "language": language_spanish,
           "order": [[ 0, "asc" ]]

@@ -8,6 +8,7 @@ use App\ActividadEconomica;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class QuejaController extends Controller
 {
@@ -89,11 +90,16 @@ class QuejaController extends Controller
      */
     public function edit($id)
     {
-        $registro = Queja::where('no',$id)
-                            ->where('status','!=',Queja::QUEJA_PROCESADA)
-                            ->first();
+        $registro = DB::table('queja as q')
+                        ->join('actividad_economica as ae','q.actividad_economica_id','=','ae.id')
+                        ->join('departamento as d','q.departamento_id','=','d.id')
+                        ->join('municipio as m','q.municipio_id','=','m.id')
+                        ->select('q.no','q.nacionalidad','q.no_documento','q.fecha_documento','q.detalle','q.solicitud','q.telefono_contacto','q.correo_contacto','q.nombres','q.apellidos','q.nit','q.negocio','q.direccion','q.status','ae.nombre as actividad_economica','d.nombre as departamento','m.nombre as municipio')
+                        ->where('no',$id)
+                        ->where('status','!=',Queja::QUEJA_PROCESADA)
+                        ->first();
 
-        return view('queja.detalle',['registro' => $registro]);
+        return view('queja.detalle',['registro' => collect($registro)]);
     }
 
     /**
@@ -196,6 +202,16 @@ class QuejaController extends Controller
                 ->first();
 
         return response()->json(['data' => $queja],200);
+    }
+
+    public function procesarQueja(Request $request)
+    {
+        $queja = Queja::where('no',$request->get('no'))->first();
+        $queja->status = QUEJA::QUEJA_PROCESADA;
+        $queja->usuario_proceso_id = Auth::user()->id;
+        $queja->save();
+
+        return response()->json(['data' => 'Registro actualizado con éxito'], 200);
     }
 
     private function generarIdQueja(Queja $queja)

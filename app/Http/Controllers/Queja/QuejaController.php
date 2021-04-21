@@ -143,7 +143,9 @@ class QuejaController extends Controller
                 'nit' => 'required|string',
                 'origen' => 'required|numeric|min:1|max:2',
                 'solicitud' => 'required|string',
-                'telefono' => 'nullable|numeric',
+                'telefono' => 'required|numeric',
+                'nombres' => 'required',
+                'apellidos' => 'required',
                 'direccion' => 'required|string'
             ];
 
@@ -157,6 +159,8 @@ class QuejaController extends Controller
             $queja->nacionalidad = $request->get('origen');
             $queja->telefono_contacto = $request->get('telefono');
             $queja->correo_contacto = $request->get('correo');
+            $queja->nombres = $request->get('nombres');
+            $queja->apellidos = $request->get('apellidos');
             $queja->nit = $request->get('nit');
             $queja->negocio = $request->get('negocio');
             $queja->direccion = $request->get('direccion');
@@ -187,7 +191,7 @@ class QuejaController extends Controller
                 ->join('municipio as m','q.municipio_id','m.id')
                 ->join('departamento as d','q.departamento_id','d.id')
                 ->join('actividad_economica as ae','q.actividad_economica_id','ae.id')
-                ->select('q.no_documento','q.fecha_documento','q.nit','q.negocio','q.direccion','ae.nombre as actividad','d.nombre as departamento','m.nombre as municipio','q.detalle','q.solicitud','q.created_at')
+                ->select('q.no_documento','q.fecha_documento','q.nit','q.negocio','q.direccion','q.status','ae.nombre as actividad','d.nombre as departamento','m.nombre as municipio','q.detalle','q.solicitud','q.created_at')
                 ->where('q.no',$request->get('no'))
                 ->first();
 

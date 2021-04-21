@@ -23,6 +23,8 @@ class CreateQuejaTable extends Migration
             $table->string('nacionalidad');
             $table->string('telefono_contacto')->nullable();
             $table->string('correo_contacto')->nullable();
+            $table->string('nombres')->nullable();
+            $table->string('apellidos')->nullable();
             $table->string('nit');
             $table->string('negocio');
             $table->text('direccion');

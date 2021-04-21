@@ -21,9 +21,12 @@ class Queja extends Model
         'genero',
         'telefono_contacto',
         'correo_contacto',
+        'nombres',
+        'apellidos',
         'ip',
         'empresa_id',
-        'direccion'
+        'direccion',
+        'status'
     ];
 
     public function municipio()

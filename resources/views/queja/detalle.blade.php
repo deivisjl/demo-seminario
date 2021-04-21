@@ -57,6 +57,10 @@
                             <td>Correo de contacto</td>
                             <td>{{ $registro->correo_contacto }}</td>
                         </tr>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>{{ $registro->nombres }} {{ $registro->apellidos }}</td>
+                        </tr>
                         <tr><th colspan="2">Detalle</th></tr>
                         <tr>
                             <td colspan="2">{{ $registro->detalle }}</td>

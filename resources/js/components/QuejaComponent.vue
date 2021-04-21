@@ -26,14 +26,24 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Teléfono de contacto <small>(opcional)</small></label>
-                        <input type="text" class="form-control" name="telefono" v-model="telefono" v-validate="'numeric'"/>
+                        <label for="">Teléfono de contacto</label>
+                        <input type="text" class="form-control" name="telefono" v-model="telefono" v-validate="'required|numeric|regex:^([0-9]{8})$'"/>
                         <error-form :attribute_name="'telefono'" :errors_form="errors"></error-form>
                     </div>
                     <div class="form-group">
                         <label for="">Correo de contacto <small>(opcional)</small></label>
                         <input type="email" class="form-control" name="correo" v-model="correo" v-validate="'email'"/>
                         <error-form :attribute_name="'correo'" :errors_form="errors"></error-form>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label">Nombres</label>
+                        <input type="text" class="form-control" name="nombres" v-model="nombres" v-validate="'required'"/>
+                        <error-form :attribute_name="'nombres'" :errors_form="errors"></error-form>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label">Apellidos</label>
+                        <input type="text" class="form-control" name="apellidos" v-model="apellidos" v-validate="'required'"/>
+                        <error-form :attribute_name="'apellidos'" :errors_form="errors"></error-form>
                     </div>
                 </div>
                 <input type="button" name="next" class="next action-button btn btn-success" value="Siguiente"/>
@@ -128,6 +138,10 @@
                             <td>Correo de contacto</td>
                             <td>{{ correo }}</td>
                         </tr>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>{{ nombres }} {{ apellidos }}</td>
+                        </tr>
                         <tr><th colspan="2">Datos del proveedor</th></tr>
                         <tr>
                             <td>NIT</td>
@@ -185,6 +199,8 @@ import moment from 'moment';
                 origen:1,//
                 telefono:'',
                 correo:'',
+                nombres:'',
+                apellidos:'',
                 nit:'',//
                 negocio:'',//
                 actividad:'',//
@@ -252,6 +268,8 @@ import moment from 'moment';
                     'origen':this.origen,
                     'telefono':this.telefono,
                     'correo':this.correo,
+                    'nombres':this.nombres,
+                    'apellidos':this.apellidos,
                     'nit':this.nit,
                     'negocio':this.negocio,
                     'actividad':this.actividad.id,
@@ -286,10 +304,17 @@ import moment from 'moment';
                         required:'La nacionalidad es requerida',
                     },
                     telefono:{
+                        required:'El número de teléfono es requerido',
                         numeric:'El teléfono es un número',
                     },
                     correo:{
                         email:'El correo debe ser válido',
+                    },
+                    nombres:{
+                        required:'El nombre es requerido',
+                    },
+                    apellidos:{
+                        required:'El apellido es requerido',
                     },
                     nit:{
                         required:'El nit es requerido',

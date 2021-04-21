@@ -19,6 +19,7 @@
             <div class="row" v-if="datos">
                 <div class="col-md-12">
                     <table class="table table-bordered">
+                        <tr><th colspan="2" class="text-center">Estado: {{ datos.status }}</th></tr>
                         <tr><th colspan="2">Datos del proveedor</th></tr>
                         <tr>
                             <td>NIT</td>

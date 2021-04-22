@@ -24,7 +24,6 @@
                             <li><a href="/">Inicio</a></li>
                             <li><a href="/crear-queja">Crear queja</a></li>
                             <li><a href="/consultar-queja">Consultar queja</a></li>
-                            <li><a href="#">Acerca de</a></li>
                             <li><a href="/login" class="boton boton-primario">Iniciar sesion</a></li>
                         </ul>
                     </nav>

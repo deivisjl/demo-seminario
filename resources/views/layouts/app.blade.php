@@ -51,9 +51,16 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('quejas.index') }}"><i class="fas fa-address-book"></i> Quejas</a>
                           </li>
-                          <li class="nav-item active">
-                            <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> Reportes</a>
-                        </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-chart-line"></i> Reportes
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="/reportes-graficos"><i class="fas fa-chart-line icon-bg-verde"></i> Reporte gráfico</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="/reportes-pdf"><i class="far fa-file-pdf icon-bg-rojo"></i> Reportes pdf</a>
+                            </div>
+                          </li>
                         @endguest
                     </ul>
 
@@ -107,6 +114,9 @@
     </div>
     {{-- scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://unpkg.com/vue-recaptcha@latest/dist/vue-recaptcha.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer>
+    </script>
     @yield('js')
 </body>
 </html>

@@ -182,8 +182,22 @@
                         </tr>
                     </table>
                 </div>
-                <input type="button" name="previous" class="previous action-button-previous btn btn-danger" value="Anterior" v-if="mostrarBotones"/>
-                <input type="button" name="make_payment" class="action-button btn btn-success" value="Confirmar" @click="validar" v-if="mostrarBotones"/>
+                <div class="row text-center">
+                    <div class="col-md-12 text-center">
+                        <vue-recaptcha
+                            style="display:inline-block;"
+                            sitekey="6LcVKbQaAAAAAGfPCyQQEwuehtLvLXnWzf62IoT0"
+                            :loadRecaptchaScript="true"
+                            @expired="anularRecaptcha"
+                            @verify="verificarRecaptcha"></vue-recaptcha>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12 text-center">
+                        <input type="button" name="previous" class="previous action-button-previous btn btn-danger" value="Anterior" v-if="mostrarBotones"/>
+                        <input type="button" name="make_payment" class="action-button btn btn-success" value="Confirmar" @click="validar" v-if="mostrarBotones && recaptcha"/>
+                    </div>
+                </div>
             </fieldset>
         </form>
         <!-- Boleta -->
@@ -208,10 +222,12 @@
 
 <script>
 import moment from 'moment';
-import BoletaComponent from './shared/BoletaComponent'
+import BoletaComponent from './shared/BoletaComponent';
+import VueRecaptcha from 'vue-recaptcha';
     export default{
         components:{
-            BoletaComponent
+            BoletaComponent,
+            VueRecaptcha
         },
         data(){
             return {
@@ -238,6 +254,8 @@ import BoletaComponent from './shared/BoletaComponent'
                 mostrarBoleta:false,
                 boleta:{},
                 mostrarBotones:true,
+
+                recaptcha:null,
             }
         },
         props:{
@@ -254,6 +272,14 @@ import BoletaComponent from './shared/BoletaComponent'
 
         },
         methods:{
+            verificarRecaptcha(response)
+            {
+                this.recaptcha = response
+            },
+            anularRecaptcha()
+            {
+                this.recaptcha = null
+            },
             formato_fecha(fecha)
             {
                 if(fecha)

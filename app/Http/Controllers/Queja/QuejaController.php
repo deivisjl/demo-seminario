@@ -216,34 +216,7 @@ class QuejaController extends Controller
 
     private function generarIdQueja(Queja $queja)
     {
-        if($queja->id < 10)
-        {
-            $queja->no = $queja->id.'0000000'.$this->baseIdQueja();
-        }
-        else if($queja->id >= 10 && $queja->id < 100)
-        {
-            $queja->no = $queja->id.'000000'.$this->baseIdQueja();
-        }
-        else if($queja->id >= 100 && $queja->id < 1000)
-        {
-            $queja->no = $queja->id.'00000'.$this->baseIdQueja();
-        }
-        else if($queja->id >= 1000 && $queja->id < 10000)
-        {
-            $queja->no = $queja->id.'0000'.$this->baseIdQueja();
-        }
-        else if($queja->id >= 10000 && $queja->id < 100000)
-        {
-            $queja->no = $queja->id.'000'.$this->baseIdQueja();
-        }
-        else if($queja->id >= 100000 && $queja->id < 1000000)
-        {
-            $queja->no = $queja->id.'00'.$this->baseIdQueja();
-        }
-        else if($queja->id >= 1000000 && $queja->id < 10000000)
-        {
-            $queja->no = $queja->id.'0'.$this->baseIdQueja();
-        }
+        $queja->no = $this->baseIdQueja().'0'.$queja->id;
 
         $queja->save();
         return $queja;

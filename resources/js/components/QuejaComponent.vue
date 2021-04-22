@@ -182,16 +182,37 @@
                         </tr>
                     </table>
                 </div>
-                <input type="button" name="previous" class="previous action-button-previous btn btn-danger" value="Anterior"/>
-                <input type="button" name="make_payment" class="action-button btn btn-success" value="Confirmar" @click="validar"/>
+                <input type="button" name="previous" class="previous action-button-previous btn btn-danger" value="Anterior" v-if="mostrarBotones"/>
+                <input type="button" name="make_payment" class="action-button btn btn-success" value="Confirmar" @click="validar" v-if="mostrarBotones"/>
             </fieldset>
         </form>
+        <!-- Boleta -->
+        <div class="modal fade" id="imprimir-boleta" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Impresión de boleta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <boleta-component v-if="mostrarBoleta" :registro=boleta></boleta-component>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End boleta -->
     </div>
 </template>
 
 <script>
 import moment from 'moment';
+import BoletaComponent from './shared/BoletaComponent'
     export default{
+        components:{
+            BoletaComponent
+        },
         data(){
             return {
                 loading:false,
@@ -213,6 +234,10 @@ import moment from 'moment';
                 direccion:'',
 
                 municipios:[],
+
+                mostrarBoleta:false,
+                boleta:{},
+                mostrarBotones:true,
             }
         },
         props:{
@@ -221,6 +246,9 @@ import moment from 'moment';
         },
         mounted(){
             this.config_error()
+            $('#imprimir-boleta').on('hidden.bs.modal', function (event) {
+                window.location.reload()
+            })
         },
         created(){
 
@@ -285,10 +313,11 @@ import moment from 'moment';
                 axios.post(abs_path + '/guardar-queja', data)
                     .then(r => {
                         Toastr.success(r.data.data,'Mensaje')
+                        this.boleta = r.data.registro
+                        this.mostrarBotones = false
+                        this.mostrarBoleta = true
+                        $('#imprimir-boleta').appendTo("body").modal('show');
                         this.loading = false
-                        setTimeout(function(){
-                            window.location.reload()
-                        },200)
                     })
                     .catch(error => {
                         this.loading = false

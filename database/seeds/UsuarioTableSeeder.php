@@ -13,8 +13,8 @@ class UsuarioTableSeeder extends Seeder
      */
     public function run()
     {
-        $rol = Rol::create(['nombre' => 'Administrador']);
-        $rol = Rol::create(['nombre' => 'Analista']);
+        $rolAdmin = Rol::create(['nombre' => 'Administrador']);
+        $rolAnalista = Rol::create(['nombre' => 'Analista']);
 
         User::create([
             'nombres' => 'Admin',
@@ -24,7 +24,7 @@ class UsuarioTableSeeder extends Seeder
             'direccion' => 'Ciudad',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('12345'),
-            'rol_id' => $rol->id
+            'rol_id' => $rolAdmin->id
         ]);
     }
 }

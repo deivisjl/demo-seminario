@@ -20,11 +20,6 @@ class ReporteController extends Controller
         return view('reportes.index');
     }
 
-    public function reportePdf()
-    {
-
-    }
-
     public function graficoTotalQueja(Request $request)
     {
         $rules = [

@@ -42,7 +42,6 @@ Route::group(['middleware' =>['auth']], function(){
     Route::post('procesar-queja','Queja\QuejaController@procesarQueja');
 
     Route::get('reportes-graficos','Reporte\ReporteController@index');
-    Route::get('reportes-pdf','Reporte\ReporteController@reportePdf');
 
     Route::post('reporte-grafico-por-region','Reporte\ReporteController@graficoPorRegion');
     Route::post('reporte-grafico-por-departamento','Reporte\ReporteController@graficoPorDepartamento');
@@ -50,5 +49,8 @@ Route::group(['middleware' =>['auth']], function(){
     Route::post('reporte-grafico-top5-actividad','Reporte\ReporteController@graficoTop5Actividad');
     Route::post('reporte-grafico-top10','Reporte\ReporteController@graficoTop10');
     Route::post('reporte-grafico-total-quejas','Reporte\ReporteController@graficoTotalQueja');
+
+    Route::get('reportes-pdf','Reporte\ReportePdfController@index');
+    Route::post('reporte-pdf-general','Reporte\ReportePdfController@reporteGeneral');
 });
 

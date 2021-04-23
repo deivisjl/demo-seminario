@@ -71,6 +71,7 @@ Vue.component('consulta-queja-component', require('./components/ConsultaQuejaCom
 Vue.component('procesar-queja-component', require('./components/ProcesarQuejaComponent.vue').default);
 
 Vue.component('grafico-component', require('./components/reportes/GraficoComponent.vue').default);
+Vue.component('reporte-component', require('./components/reportes/ReporteDocumentoComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

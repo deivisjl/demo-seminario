@@ -44,7 +44,114 @@ class ReportePdfController extends Controller
                         ->get();
 
             $pdf = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
-                    ->loadView('reportes.pdf-general',['registros' => $registros, 'desde' => $desde, 'hasta' => $hasta])->setPaper('letter','landscape');
+                    ->loadView('reportes.pdf-general',['registros' => $registros, 'desde' => $desde, 'hasta' => $hasta])->setPaper('legal','landscape');
+
+            $fecha = Carbon::now()->format('dmY_h:m:s');
+
+            return $pdf->download('reporte_'.$fecha.'.pdf');
+        }
+        catch (\Exception $ex)
+        {
+            return response()->json(['error' => $ex->getMessage()],423);
+        }
+    }
+
+    public function reporteMunicipio(Request $request)
+    {
+        $rules = [
+            'desde'=>'required|date',
+            'hasta'=>'required|date'
+        ];
+
+        $desde = Carbon::parse($request->get('desde'));
+        $hasta = Carbon::parse($request->get('hasta'));
+
+        $this->validate($request, $rules);
+
+        try
+        {
+            $registros = DB::table('queja as q')
+                        ->join('municipio as m','q.municipio_id','=','m.id')
+                        ->join('departamento as d','q.departamento_id','=', 'd.id')
+                        ->select(DB::raw('COUNT(q.id) as cantidad'),'m.nombre as municipio','d.nombre as departamento')
+                        ->whereBetween('q.created_at',[$desde, $hasta])
+                        ->groupBy('m.nombre','d.nombre')
+                        ->orderBy('m.nombre','asc')
+                        ->get();
+
+            $pdf = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+                    ->loadView('reportes.pdf-municipio',['registros' => $registros, 'desde' => $desde, 'hasta' => $hasta])->setPaper('letter','portrait');
+
+            $fecha = Carbon::now()->format('dmY_h:m:s');
+
+            return $pdf->download('reporte_'.$fecha.'.pdf');
+        }
+        catch (\Exception $ex)
+        {
+            return response()->json(['error' => $ex->getMessage()],423);
+        }
+    }
+
+    public function reporteNegocio(Request $request)
+    {
+        $rules = [
+            'desde'=>'required|date',
+            'hasta'=>'required|date'
+        ];
+
+        $desde = Carbon::parse($request->get('desde'));
+        $hasta = Carbon::parse($request->get('hasta'));
+
+        $this->validate($request, $rules);
+
+        try
+        {
+            $registros = DB::table('queja as q')
+                        ->join('municipio as m','q.municipio_id','=','m.id')
+                        ->join('departamento as d','q.departamento_id','=', 'd.id')
+                        ->select(DB::raw('COUNT(q.nit) as cantidad'),'q.negocio','q.nit','q.direccion','m.nombre as municipio','d.nombre as departamento')
+                        ->whereBetween('q.created_at',[$desde, $hasta])
+                        ->groupBy('q.negocio','q.nit','q.direccion','m.nombre','d.nombre')
+                        ->orderBy('q.negocio','asc')
+                        ->get();
+
+            $pdf = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+                    ->loadView('reportes.pdf-negocio',['registros' => $registros, 'desde' => $desde, 'hasta' => $hasta])->setPaper('legal','landscape');
+
+            $fecha = Carbon::now()->format('dmY_h:m:s');
+
+            return $pdf->download('reporte_'.$fecha.'.pdf');
+        }
+        catch (\Exception $ex)
+        {
+            return response()->json(['error' => $ex->getMessage()],423);
+        }
+    }
+
+    public function reporteActividad(Request $request)
+    {
+        $rules = [
+            'desde'=>'required|date',
+            'hasta'=>'required|date'
+        ];
+
+        $desde = Carbon::parse($request->get('desde'));
+        $hasta = Carbon::parse($request->get('hasta'));
+
+        $this->validate($request, $rules);
+
+        try
+        {
+            $registros = DB::table('queja as q')
+                        ->join('actividad_economica as ae','q.actividad_economica_id','ae.id')
+                        ->select(DB::raw('COUNT(q.id) as cantidad'),'ae.nombre as actividad')
+                        ->whereBetween('q.created_at',[$desde, $hasta])
+                        ->groupBy('ae.nombre')
+                        ->orderBy('ae.nombre','asc')
+                        ->get();
+
+            $pdf = \PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+                    ->loadView('reportes.pdf-actividad',['registros' => $registros, 'desde' => $desde, 'hasta' => $hasta])->setPaper('letter','portrait');
 
             $fecha = Carbon::now()->format('dmY_h:m:s');
 

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Reporte general de quejas</title>
+    <title>Reporte de quejas por negocio</title>
     <style>
         .table-custom{
             width: 100%;
@@ -39,21 +39,19 @@
             </td>
         </tr>
         <tr style="text-align: center">
-            <td>Reporte de quejas del <strong>{{ \Carbon\Carbon::parse($desde)->format('d/m/Y') }}</strong> hasta <strong>{{ \Carbon\Carbon::parse($hasta)->format('d/m/Y') }}</strong></td>
+            <td>Reporte de quejas por negocio, del <strong>{{ \Carbon\Carbon::parse($desde)->format('d/m/Y') }}</strong> hasta <strong>{{ \Carbon\Carbon::parse($hasta)->format('d/m/Y') }}</strong></td>
         </tr>
     </table>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th style="width: 8%;">#</th>
-                <th>Código</th>
-                <th>Entidad</th>
-                <th>Nit</th>
-                <th>Actividad económica</th>
+                <th>Nombre</th>
+                <th>NIT</th>
+                <th>Número de quejas</th>
+                <th>Dirección</th>
                 <th>Municipio</th>
                 <th>Departamento</th>
-                <th>Contacto</th>
-                <th>Fecha</th>
             </tr>
         </thead>
         <tbody>
@@ -61,19 +59,17 @@
                 @foreach ($registros as $index => $item)
                     <tr>
                         <td class="text-center">{{ $index + 1 }}</td>
-                        <td>{{ $item->codigo }}</td>
                         <td>{{ $item->negocio }}</td>
                         <td>{{ $item->nit }}</td>
-                        <td>{{ $item->actividad }}</td>
-                        <td>{{ $item->municipio }}</td>
+                        <td class="text-center">{{ $item->cantidad }}</td>
+                        <td>{{ $item->direccion }}</td>
+                        <td>{{ $item->municipio}}</td>
                         <td>{{ $item->departamento }}</td>
-                        <td>{{ $item->telefono_contacto }}</td>
-                        <td style="text-align:center">{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
                     </tr>
                 @endforeach
             @else
                     <tr style="text-align:center">
-                        <td colspan="9">No se encontraron registros</td>
+                        <td colspan="4">No se encontraron registros</td>
                     </tr>
             @endif
         </tbody>

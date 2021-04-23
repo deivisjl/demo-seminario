@@ -3,7 +3,7 @@
         <div class="block-loading" v-if="loading"></div>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h3>Descargar reporte general</h3>
+                <h3>Descargar reporte por negocio</h3>
                     <form @submit.prevent="validar()">
                         <div class="form-group">
                             <label for="fecha desde" class="">Fecha desde</label>
@@ -64,7 +64,7 @@ export default{
                     this.loading = true
 
                     axios({
-                        url:abs_path + '/reporte-pdf-general',
+                        url:abs_path + '/reporte-pdf-negocio',
                         data:datos,
                         method:'POST',
                         responseType:'blob'

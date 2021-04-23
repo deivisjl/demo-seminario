@@ -36,8 +36,11 @@ Route::group(['middleware' =>['auth','admin']], function(){
 
     Route::get('reportes-pdf','Reporte\ReportePdfController@index');
     Route::post('reporte-pdf-general','Reporte\ReportePdfController@reporteGeneral');
-});
+    Route::post('reporte-pdf-municipio','Reporte\ReportePdfController@reporteMunicipio');
+    Route::post('reporte-pdf-negocio','Reporte\ReportePdfController@reporteNegocio');
 
+});
+Route::post('reporte-pdf-actividad','Reporte\ReportePdfController@reporteActividad');
 Route::group(['middleware' =>['auth','analista']], function(){
 
     Route::get('/home', 'HomeController@index')->name('home');

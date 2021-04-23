@@ -33,6 +33,11 @@
 </head>
 <body>
     <table class="table-custom">
+        <tr>
+            <td>
+                <img src="{{ asset('img/diaco-logo.png') }}" alt="logo" style="height: 65px;">
+            </td>
+        </tr>
         <tr style="text-align: center">
             <td>Reporte de quejas del <strong>{{ \Carbon\Carbon::parse($desde)->format('d/m/Y') }}</strong> hasta <strong>{{ \Carbon\Carbon::parse($hasta)->format('d/m/Y') }}</strong></td>
         </tr>

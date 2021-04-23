@@ -1,7 +1,5 @@
 <?php
 
-use Carbon\Carbon;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,20 +53,5 @@ Route::group(['middleware' =>['auth','analista']], function(){
     Route::resource('actividad-economica','Administrar\ActividadEconomicaController');
 
     Route::resource('quejas','Queja\QuejaController');
-    Route::post('procesar-queja','Queja\QuejaController@procesarQueja');
-});
-
-
-Route::get('prueba', function(){
-    $registros = DB::table('queja as q')
-            ->join('municipio as m','q.municipio_id','=','m.id')
-            ->join('departamento as d','q.departamento_id','=', 'd.id')
-            ->join('actividad_economica as ae','q.actividad_economica_id','=','ae.id')
-            ->select('q.no as codigo','q.nit','q.negocio','m.nombre as municipio','d.nombre as departamento','ae.nombre as actividad','q.telefono_contacto','q.created_at')
-            ->get();
-
-            $fecha = \Carbon\Carbon::parse("23-04-2021");
-            $pdf = \PDF::loadView('reportes.pdf-general',['registros' => $registros, 'desde' => $fecha, 'hasta' => $fecha])->setPaper('legal','landscape');
-
-            return $pdf->download('reporte_'.$fecha.'.pdf');
+    Route::get('procesar-queja','Queja\QuejaController@procesarQueja');
 });

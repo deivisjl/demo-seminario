@@ -56,13 +56,18 @@ export default{
 
             descargar_reporte()
             {
-                let data = {
+                let datos = {
                         'desde' : this.valorFechaInicio,
                         'hasta' : this.valorFechaFin,
                     }
                     this.loading = true
 
-                    axios.post(abs_path + '/reporte-pdf-general',data)
+                    axios({
+                        url:abs_path + '/reporte-pdf-general',
+                        data:datos,
+                        method:'POST',
+                        responseType:'blob'
+                    })
                         .then((r) => {
                             const blob = new Blob([r.data], {type: r.data.type});
                             const url = window.URL.createObjectURL(blob);

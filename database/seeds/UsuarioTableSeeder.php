@@ -14,6 +14,7 @@ class UsuarioTableSeeder extends Seeder
     public function run()
     {
         $rol = Rol::create(['nombre' => 'Administrador']);
+        $rol = Rol::create(['nombre' => 'Analista']);
 
         User::create([
             'nombres' => 'Admin',

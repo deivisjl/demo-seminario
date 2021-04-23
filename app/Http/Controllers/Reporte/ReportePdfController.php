@@ -42,12 +42,21 @@ class ReportePdfController extends Controller
                         ->select('q.no as codigo','q.nit','q.negocio','m.nombre as municipio','d.nombre as departamento','ae.nombre as actividad','q.telefono_contacto','q.created_at')
                         ->whereBetween('q.created_at',[$desde, $hasta])
                         ->get();
+            /* $vista = \View::make('reportes.pdf-general',['registros' => $registros, 'desde' => $desde, 'hasta' => $hasta])->render();
 
-            $pdf = \PDF::loadView('reportes.pdf-general',['registros' => $registros, 'desde' => $desde, 'hasta' => $hasta])->setPaper('legal','landscape');
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($vista);
+            $pdf->setPaper('legal','landscape'); */
+
+            //$pdf = \PDF::loadView('reportes.pdf-general',['registros' => $registros, 'desde' => $desde, 'hasta' => $hasta])->setPaper('legal','landscape');
+
+            /* $pdf = \PDF::loadView('reportes.hola-pdf')->setPaper('legal','landscape');
 
             $fecha = Carbon::now()->format('dmY_h:m:s');
 
-            return $pdf->download('reporte_'.$fecha.'.pdf');
+            return $pdf->download('reporte_'.$fecha.'.pdf'); */
+            $pdf = \PDF::loadHTML('<h1>Test</h1>');
+            return $pdf->download('prueba.pdf');
         }
         catch (\Exception $ex)
         {

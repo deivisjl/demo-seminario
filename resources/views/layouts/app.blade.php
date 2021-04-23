@@ -32,13 +32,16 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                         @else
+                        @if(Auth::user()->esAnalista() || Auth::user()->esAdministrador())
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <i class="fas fa-tachometer-alt"></i> Administrar
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              @if(Auth::user()->esAdministrador())
                               <a class="dropdown-item" href="{{ route('usuarios.index') }}"><i class="fas fa-users  icon-bg-verde"></i> Usuarios</a>
                               <div class="dropdown-divider"></div>
+                              @endif
                               <a class="dropdown-item" href="{{ route('actividad-economica.index') }}"><i class="fas fa-clipboard  icon-bg-amarillo"></i> Actividad económica</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="{{ route('regiones.index') }}"><i class="fas fa-globe-americas icon-bg-azul"></i> Regiones</a>
@@ -51,6 +54,8 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="{{ route('quejas.index') }}"><i class="fas fa-address-book"></i> Quejas</a>
                           </li>
+                        @endif
+                        @if(Auth::user()->esAdministrador())
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-chart-line"></i> Reportes
@@ -61,6 +66,7 @@
                               <a class="dropdown-item" href="/reportes-pdf"><i class="far fa-file-pdf icon-bg-rojo"></i> Reportes pdf</a>
                             </div>
                           </li>
+                          @endif
                         @endguest
                     </ul>
 

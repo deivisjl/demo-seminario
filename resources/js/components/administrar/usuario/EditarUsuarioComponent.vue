@@ -56,7 +56,7 @@
                 <error-form :attribute_name="'rol'" :errors_form="errors"></error-form>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                <button type="submit" class="btn btn-success btn-block">Editar</button>
             </div>
         </form>
     </div>

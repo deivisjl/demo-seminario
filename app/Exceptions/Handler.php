@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,10 +52,31 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception->getStatusCode() == 404)
+        if($exception instanceof HttpException)
         {
-            return response()->view('errors.404');
+            if($exception->getStatusCode() == 404)
+            {
+                return response()->view('errors.404');
+            }
         }
+
+        if($exception instanceof TokenMismatchException)
+        {
+            if($this->isFrontend($request))
+            {
+                return redirect()->route('home');
+            }
+            else
+            {
+                return response()->json(['error' => 'La sesión expiró'],423);
+            }
+        }
+
         return parent::render($request, $exception);
+    }
+
+    private function isFrontend($request)
+    {
+        return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
     }
 }

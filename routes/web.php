@@ -56,5 +56,5 @@ Route::group(['middleware' =>['auth','analista']], function(){
     Route::resource('actividad-economica','Administrar\ActividadEconomicaController');
 
     Route::resource('quejas','Queja\QuejaController');
-    Route::get('procesar-queja','Queja\QuejaController@procesarQueja');
+    Route::post('procesar-queja','Queja\QuejaController@procesarQueja');
 });

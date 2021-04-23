@@ -54,6 +54,9 @@
                             <td colspan="2">{{ registro.nit }}</td>
                         </tr>
                         <tr>
+                            <th colspan="2" class="text-center">Detalle de la queja</th>
+                        </tr>
+                        <tr>
                             <td width="33%">Detalle</td>
                             <td colspan="2">{{ registro.detalle }}</td>
                         </tr>

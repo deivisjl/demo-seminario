@@ -13,6 +13,6 @@ class MunicipioTableSeeder extends Seeder
      */
     public function run()
     {
-        $municipios = Excel::import(new MunicipioImport, 'database/seeds/Imports/Municipios.xlsx');
+        $municipios = Excel::import(new MunicipioImport, 'database/seeds/Imports/municipios.xlsx');
     }
 }

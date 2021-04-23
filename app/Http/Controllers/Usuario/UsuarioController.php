@@ -94,6 +94,7 @@ class UsuarioController extends Controller
                 ->join('rol as r','u.rol_id','r.id')
                 ->select('u.id','u.nombres','u.apellidos', 'u.email', 'r.nombre as rol','u.telefono')
                 ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
+                ->whereNull('u.deleted_at')
                 ->orderBy($ordenadores[$columna], $request['order'][0]["dir"])
                 ->skip($request['start'])
                 ->take($request['length'])
@@ -102,6 +103,7 @@ class UsuarioController extends Controller
         $count = DB::table('users as u')
                 ->join('rol as r','u.rol_id','r.id')
                 ->where($ordenadores[$columna], 'LIKE', '%' . $criterio . '%')
+                ->whereNull('u.deleted_at')
                 ->count();
 
         $data = array(

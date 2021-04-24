@@ -192,12 +192,8 @@
                             @verify="verificarRecaptcha"></vue-recaptcha>
                     </div>
                 </div>
-                <div class="row text-center">
-                    <div class="col-md-12 text-center">
-                        <input type="button" name="previous" class="previous action-button-previous btn btn-danger" value="Anterior" v-if="mostrarBotones"/>
-                        <input type="button" name="make_payment" class="action-button btn btn-success" value="Confirmar" @click="validar" v-if="mostrarBotones && recaptcha"/>
-                    </div>
-                </div>
+                <input type="button" name="previous" class="previous action-button-previous btn btn-danger" value="Anterior" v-if="mostrarBotones"/>
+                <input type="button" name="make_payment" class="btn btn-success" value="Confirmar" @click="validar()" v-if="mostrarBotones && recaptcha"/>
             </fieldset>
         </form>
         <!-- Boleta -->

@@ -98,7 +98,10 @@ class QuejaController extends Controller
                         ->where('no',$id)
                         ->where('status','!=',Queja::QUEJA_PROCESADA)
                         ->first();
-
+        if(!$registro)
+        {
+            abort(404);
+        }
         return view('queja.detalle',['registro' => collect($registro)]);
     }
 

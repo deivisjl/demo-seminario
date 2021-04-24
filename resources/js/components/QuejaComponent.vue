@@ -271,6 +271,7 @@ import VueRecaptcha from 'vue-recaptcha';
             verificarRecaptcha(response)
             {
                 this.recaptcha = response
+                console.log(this.recaptcha)
             },
             anularRecaptcha()
             {
@@ -330,6 +331,7 @@ import VueRecaptcha from 'vue-recaptcha';
                     'detalle':this.detalle,
                     'solicitud':this.solicitud,
                     'direccion':this.direccion,
+                    'recaptcha':this.recaptcha
                 }
                 this.loading = true
                 axios.post(abs_path + '/guardar-queja', data)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Queja;
 
 use App\Queja;
 use App\Departamento;
+use GuzzleHttp\Client;
 use App\ActividadEconomica;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -155,8 +156,26 @@ class QuejaController extends Controller
                 'telefono' => 'required|numeric',
                 'nombres' => 'required',
                 'apellidos' => 'required',
-                'direccion' => 'required|string'
+                'direccion' => 'required|string',
+                'recaptcha' => 'required'
             ];
+
+            $cliente = new Client();
+
+            $respuesta = $cliente->request('POST','https://www.google.com/recaptcha/api/siteverify',[
+                'form_params'=>[
+                    'secret' => '6LcVKbQaAAAAAGr6uG4-2dppqRMKEhPzTLPuOwwp',
+                    'response' => $request->get('recaptcha')
+                ]
+            ]);
+
+            $respuesta = collect(json_decode($respuesta->getBody()->getContents()));
+
+            if(!$respuesta['success'])
+            {
+                throw new \Exception("Ocurrió un error en la validación del recaptcha");
+
+            }
 
             $this->validate($request, $rules);
 

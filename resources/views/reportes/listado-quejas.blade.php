@@ -57,7 +57,7 @@
               {'data': 'nit'},
               {'data': 'negocio'},
               {'data': 'actividad'},
-              {'data': 'fecha'},
+              {'data': 'fecha',"orderable":false,"searchable":false},
               {'data': 'status',"render":function(data, type, row, meta){
                  if(row.status == 'Pendiente'){
                     return '<span class="badge badge-warning">'+ data +'</span>'

@@ -39,6 +39,9 @@ Route::group(['middleware' =>['auth','admin']], function(){
     Route::post('reporte-pdf-municipio','Reporte\ReportePdfController@reporteMunicipio');
     Route::post('reporte-pdf-negocio','Reporte\ReportePdfController@reporteNegocio');
 
+    Route::get('historial-quejas','Reporte\ReporteQuejaController@index');
+    Route::get('listar-quejas','Reporte\ReporteQuejaController@listadoQueja');
+    Route::get('detalle-historial/{id}/queja','Reporte\ReporteQuejaController@detalleHistorialQueja');
 });
 Route::post('reporte-pdf-actividad','Reporte\ReportePdfController@reporteActividad');
 Route::group(['middleware' =>['auth','analista']], function(){

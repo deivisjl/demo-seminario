@@ -64,6 +64,8 @@
                               <a class="dropdown-item" href="/reportes-graficos"><i class="fas fa-chart-line icon-bg-verde"></i> Reporte gráfico</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="/reportes-pdf"><i class="far fa-file-pdf icon-bg-rojo"></i> Reportes pdf</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="/historial-quejas"><i class="fas fa-paperclip icon-bg-azul"></i> Historial de quejas</a>
                             </div>
                           </li>
                           @endif

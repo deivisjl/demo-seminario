@@ -29,7 +29,7 @@ class ReportePdfController extends Controller
         ];
 
         $desde = Carbon::parse($request->get('desde'));
-        $hasta = Carbon::parse($request->get('hasta'));
+        $hasta = Carbon::parse($request->get('hasta'))->addDays(1);
 
         $this->validate($request, $rules);
 
@@ -64,7 +64,7 @@ class ReportePdfController extends Controller
         ];
 
         $desde = Carbon::parse($request->get('desde'));
-        $hasta = Carbon::parse($request->get('hasta'));
+        $hasta = Carbon::parse($request->get('hasta'))->addDays(1);
 
         $this->validate($request, $rules);
 
@@ -100,7 +100,7 @@ class ReportePdfController extends Controller
         ];
 
         $desde = Carbon::parse($request->get('desde'));
-        $hasta = Carbon::parse($request->get('hasta'));
+        $hasta = Carbon::parse($request->get('hasta'))->addDays(1);
 
         $this->validate($request, $rules);
 
@@ -136,7 +136,7 @@ class ReportePdfController extends Controller
         ];
 
         $desde = Carbon::parse($request->get('desde'));
-        $hasta = Carbon::parse($request->get('hasta'));
+        $hasta = Carbon::parse($request->get('hasta'))->addDays(1);
 
         $this->validate($request, $rules);
 

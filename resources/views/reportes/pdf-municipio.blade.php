@@ -47,7 +47,7 @@
             <tr>
                 <th style="width: 8%;">#</th>
                 <th>Municipio</th>
-                <th>Departmento</th>
+                <th>Departamento</th>
                 <th>Número de quejas</th>
             </tr>
         </thead>

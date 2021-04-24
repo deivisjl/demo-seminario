@@ -271,7 +271,6 @@ import VueRecaptcha from 'vue-recaptcha';
             verificarRecaptcha(response)
             {
                 this.recaptcha = response
-                console.log(this.recaptcha)
             },
             anularRecaptcha()
             {
